@@ -720,8 +720,18 @@ ifneq ($(wildcard $(srctree)/arch/$(SRCARCH)/mach-msm/include/mach/msm_smsm.h),)
 CDEFINES += -DEXISTS_MSM_SMSM
 endif
 
-# Fix build for GCC 4.7
-EXTRA_CFLAGS += -Wno-maybe-uninitialized -Wno-unused-function -Wno-unused-variable
+# Disable certain flags
+EXTRA_CFLAGS += $(call cc-disable-warning, maybe-uninitialized) -Wno-unused-function -Wno-unused-variable
+
+# Disable certain flags for Clang
+ifeq ($(cc-name),clang)
+EXTRA_CFLAGS += -Wno-shift-count-negative
+EXTRA_CFLAGS += -Wno-enum-conversion
+EXTRA_CFLAGS += -Wno-typedef-redefinition
+EXTRA_CFLAGS += -Wno-shift-count-overflow
+EXTRA_CFLAGS += -Wno-non-literal-null-conversion
+EXTRA_CFLAGS += -Wno-logical-not-parentheses
+endif
 
 ifeq ($(CONFIG_WLAN_OFFLOAD_PACKETS),y)
 CDEFINES += -DWLAN_FEATURE_OFFLOAD_PACKETS
