@@ -731,6 +731,7 @@ EXTRA_CFLAGS += -Wno-typedef-redefinition
 EXTRA_CFLAGS += -Wno-shift-count-overflow
 EXTRA_CFLAGS += -Wno-non-literal-null-conversion
 EXTRA_CFLAGS += -Wno-logical-not-parentheses
+EXTRA_CFLAGS += -Wno-array-bounds
 endif
 
 ifeq ($(CONFIG_WLAN_OFFLOAD_PACKETS),y)
