@@ -513,7 +513,7 @@ CONFIG_ARM64_CPU_SUSPEND=y
 #
 # CPU Power Management
 #
-
+CONFIG_BOEFFLA_WL_BLOCKER=y
 #
 # CPU Idle
 #
